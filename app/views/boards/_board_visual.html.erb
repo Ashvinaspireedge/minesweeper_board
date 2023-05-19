@@ -1,0 +1,40 @@
+<% @board.cells.each_with_index do |row, i| %>
+  <% row.each_with_index do |cell, j| %>
+    <% if cell %>
+      <span  class="board-cell mine" data-row="<%= i %>" data-col="<%= j %>">
+        <%= image_tag 'bomb.png', class: "mine-img" %>
+      </span>
+    <% else %>
+      <span class="board-cell empty" data-row="<%= i %>" data-col="<%= j %>"></span>
+    <% end %>
+  <% end %>
+  <br>
+<% end %>
+
+<style>
+.board-cell {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ccc;
+    text-align: center;
+    line-height: 40px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.board-cell.empty {
+  background-color: black;
+}
+
+.board-cell.mine {
+  position:relative;
+}
+
+.mine-img {
+  width: 40px;
+  height: 40px;
+  display: grid;
+}
+
+</style>

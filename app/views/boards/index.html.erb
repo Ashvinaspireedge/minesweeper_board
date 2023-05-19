@@ -1,0 +1,37 @@
+
+<h1>Minesweeper List</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @boards.each do |board| %>
+      <tr>
+        <td><%= link_to board.name, board_path(board.id) %></td>
+        <td><%= board.user.email %></td>
+        <td><%= board.created_at.strftime("%Y-%m-%d") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div className="modal-footer">
+  <button><%= link_to 'View All Board', root_path(view_all: true) %></button>
+  <button><%= link_to 'Generate New Board', new_board_path %></button>
+</div> 
+
+
+<style>
+  table.table {
+    border-collapse: collapse;
+  }
+  table.table th, table.table td {
+    border: 1px solid black;
+    padding: 8px;
+  }
+</style>

@@ -1,0 +1,62 @@
+<div>
+  <% if @user.errors.any? %>
+    <% @user.errors.full_messages.each do |message| %>
+      <p class ="errors"><%= message %></p>
+    <% end %>
+  <% end %>
+</div>  
+
+<h1>Create a Minesweeper Board</h1>
+
+<div class="small-row">
+  <%= form_for @user, url: boards_path, data: { turbo:false } do |form| %>
+    <%= form.fields_for :boards do |ff| %>
+      <div class="form-group">
+        <label for="formGroupExampleInput">Enter name:</label>
+        <%= ff.text_field :name %>
+      </div>
+
+      <div class="form-group">
+        <label for="formGroupExampleInput">Enter email:</label>
+        <%= form.text_field :email %>
+      </div>
+
+      <div class="form-group">
+        <label for="formGroupExampleInput2">Enter width:</label>
+        <%= ff.number_field :width %>
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput2">Enter height:</label>
+        <%= ff.number_field :height %>
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput2">Enter mines:</label>
+        <%= ff.number_field :mines %>
+      </div>
+    <% end %>
+    <%= form.submit "Generate Board", class: "submit-button" %>
+  <% end %>
+</div>
+
+<style>
+  .errors{ color: red; }
+  .small-row{width: 50%;}
+  .submit-button{ margin-top: 12px; }
+
+  form {
+    border: 1px solid black;
+    padding: 10px;
+  }
+  .form-group {
+    margin-bottom: 10px;
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  input[type="text"],
+  input[type="number"] {
+    width: 50%;
+    padding: 5px;
+  }
+</style>
